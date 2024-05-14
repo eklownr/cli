@@ -27,12 +27,17 @@ packages = run_command("dpkg --get-selections | grep -v deinstall | wc -l").stri
 flatpak = run_command("flatpak list | wc -l").strip("\n")
 snap = run_command("snap list | wc -l").strip("\n")
 
+# RAM check for Swedish(Minne) or English(Mem)
 totalram = run_command("free -m | grep Minne | awk '{print $2}' ").strip("\n")
+if totalram == "":
+    totalram = run_command("free -m | grep Mem | awk '{print $2}' ").strip("\n")
 totalram = int(totalram) 
 totalram /= 1000
 totalram = round(totalram, 2)
 
 usedram = run_command("free -m | grep Minne | awk '{print $3}' ").strip("\n")
+if usedram == "":
+    usedram = run_command("free -m | grep Mem | awk '{print $3}' ").strip("\n")
 usedram = int(usedram)
 usedram /= 1000
 usedram = round(usedram, 2)
@@ -42,7 +47,7 @@ usedram = round(usedram, 2)
 #active_ram /= 1000
 #active_ram = round(active_ram, 2)
 
-# py -m rich.emoji
+# run: python3 -m rich.emoji
 emoji = ":penguin:"
 
 # Print to console
