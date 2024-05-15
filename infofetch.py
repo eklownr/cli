@@ -2,6 +2,16 @@ from rich import print
 from os import environ
 import subprocess
 
+def desktop_environment():
+    de = environ.get('XDG_CURRENT_DESKTOP')
+    if de == 'ubuntu:GNOME':
+        return 'GNOME ' + run_command("gnome-shell --version | awk '{print $3}' ").strip("\n")
+    elif de == 'KDE':
+        return 'KDE'
+    elif de == 'XFCE':
+        return 'XFCE'
+    else:
+        return 'Unknown'
 
 def run_command(command):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
@@ -16,7 +26,7 @@ os_name = run_command("lsb_release -d | awk '{print $2, $3, $4}' ").strip("\n")
 shell = run_command("bash --version | grep 'GNU bash' | awk '{print $2, $4}' ").strip("\n").strip("(1)-release").upper()
 py = run_command("python3 --version").strip("\n")
 resolution = run_command("xrandr | grep '*' | awk '{print $1, $2}' ").strip("\n").strip("*+")
-de = run_command("gnome-shell --version").strip("\n")
+de = desktop_environment()
 terminal = environ.get('TERM')
 teminal_emulator = run_command("pstree -sA $$ | awk -F '---' '{print $3}'").strip("\n").upper()
 kernel = run_command("uname -r").strip("\n")
