@@ -5,7 +5,7 @@ import subprocess
 def desktop_environment():
     de = environ.get('XDG_CURRENT_DESKTOP')
     if de == 'ubuntu:GNOME':
-        return 'GNOME ' + run_command("gnome-shell --version | awk '{print $3}' ").strip("\n")
+        return 'GNOME :footprints: ' + run_command("gnome-shell --version | awk '{print $3}' ").strip("\n")
     elif de == 'KDE':
         return 'KDE'
     elif de == 'XFCE':
@@ -70,7 +70,7 @@ print(f"    [bold red]Packages:[/]   {packages} dpkg, {flatpak} flatpak, {snap} 
 print(f"    [bold red]Shell:[/]      {shell}")
 print(f"    [bold red]Python:[/]     {py}")
 print(f"    [bold red]Resolution:[/] {resolution}")
-print(f"    [bold red]DE:[/]         {de} :footprints:")
+print(f"    [bold red]DE:[/]         {de} ")
 print(f"    [bold red]Terminal:[/]   {teminal_emulator}: {terminal}")
 print(f"    [bold red]CPU:[/]        {cpu}")
 print(f"    [bold red]Memory:[/]     {usedram} GB / {totalram} GB")
