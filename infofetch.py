@@ -72,7 +72,7 @@ usedram = str(usedram)
 
 
 def print_logo():
-    system("cat ubuntu.txt")
+    system("cat ~/programmering/python/cli/ubuntu.txt")
 
 
 # Array for printing table
@@ -102,6 +102,9 @@ info = [
 
 def print_table():
     table = Table(show_header=False, show_lines=False, expand=False, show_edge=False, box=None)     
+    
+    ### TODO: alias neo='path_to_infofetch.py table' do not work from other dir!
+    logo_file_path = "~/programmering/python/cli/ubuntu.logo"
 
     for a, line in enumerate(open("ubuntu.logo", "r")):
         line = line.strip("\n")
@@ -145,7 +148,7 @@ def print_help():
 if __name__ == "__main__":
     args = argv[1:]
     if args == []:
-        print_table()
+        print_info()
     elif args[0] == "table":
         print_table()
     elif args[0] == "logo":
