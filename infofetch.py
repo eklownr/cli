@@ -80,37 +80,33 @@ info = [
     "",
     "[bold red]GNU Linux  :penguin:  " + user + " @ " +computer_name + " [/]",
     "              --------------",
-    "[bold red]OS[/]: "         +os_name+ " " +os_codename,
-    "[bold red]Host[/]: "       +host,
-    "[bold red]Kernel[/]: "     +kernel,
-    "[bold red]Uptime[/]: "     +uptime,
-    "[bold red]Packages[/]: "+   packages +" dpkg, " +flatpak+ " flatpak, " +snap+ " snap",
-    "[bold red]Shell[/]: "+      shell,
-    "[bold red]Python[/]: "+     py,
+    "[bold red]OS[/]: "        + os_name + " " + os_codename,
+    "[bold red]Host[/]: "      + host,
+    "[bold red]Kernel[/]: "    + kernel,
+    "[bold red]Uptime[/]: "    + uptime,
+    "[bold red]Packages[/]: "  + packages + " dpkg, " + flatpak + " flatpak, " + snap + " snap",
+    "[bold red]Shell[/]: "     + shell,
+    "[bold red]Python[/]: "    + py,
     "[bold red]Resolution[/]: "+ resolution,
-    "[bold red]DE[/]: "+         de,
-    "[bold red]WM[/]: "+         wm,
-    "[bold red]DM[/]: "+         dm,
-    "[bold red]Terminal[/]: "+   teminal_emulator+": " +terminal,
-    "[bold red]CPU[/]: "+        cpu,
-    "[bold red]GPU[/]: "+        gpu,
-    "[bold red]Audio[/]: "+      audio,
-    "[bold red]Memory[/]: "+     usedram+ "GB / " +totalram+ "GB",
+    "[bold red]DE[/]: "        + de,
+    "[bold red]WM[/]: "        + wm,
+    "[bold red]DM[/]: "        + dm,
+    "[bold red]Terminal[/]: "  + teminal_emulator + ": " + terminal,
+    "[bold red]CPU[/]: "       + cpu,
+    "[bold red]GPU[/]: "       + gpu,
+    "[bold red]Audio[/]: "     + audio,
+    "[bold red]Memory[/]: "    + usedram + " GB / " + totalram + " GB",
     "",
 ]
 
 
 def print_table():
     table = Table(show_header=False, show_lines=False, expand=False, show_edge=False)     
-    #table.add_column("  logo  ")
-    #table.add_column("  Ubuntu Info  ")
 
-    i = 0
-    for line in open("ubuntu.logo", "r"):
+    for a, line in enumerate(open("ubuntu.logo", "r")):
         line = line.strip("\n")
         line = "[red]" + line + " [/]" 
-        table.add_row(line, info[i])
-        i += 1
+        table.add_row(line, info[a])
 
     console.print(table)
 
@@ -139,16 +135,17 @@ def print_info():
 
 def print_help():
     print_logo()
-    print("Usage: python3 infofetch.py")
+    print("Usage: \npython3 infofetch.py")
     print("python3 infofetch.py table")
     print("python3 infofetch.py logo")
     print("python3 infofetch.py info")
     print("python3 infofetch.py help or --help or -h")
 
+
 if __name__ == "__main__":
     args = argv[1:]
     if args == []:
-        print_info()
+        print_table()
     elif args[0] == "table":
         print_table()
     elif args[0] == "logo":
