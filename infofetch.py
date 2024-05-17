@@ -1,6 +1,11 @@
 from rich import print
+from rich.table import Table
+from rich.console import Console
 from os import environ
+from os import system
 import subprocess
+
+console = Console()
 
 def desktop_environment():
     de = environ.get('XDG_CURRENT_DESKTOP')
@@ -51,6 +56,7 @@ if totalram == "":
 totalram = int(totalram) 
 totalram /= 1000
 totalram = round(totalram, 2)
+totalram = str(totalram) 
 
 usedram = run_command("free -m | grep Minne | awk '{print $3}' ").strip("\n")
 if usedram == "":
@@ -58,11 +64,53 @@ if usedram == "":
 usedram = int(usedram)
 usedram /= 1000
 usedram = round(usedram, 2)
+usedram = str(usedram)
 
 #active_ram = run_command("cat /proc/meminfo | grep Active: | awk '{print $2}' ").strip("\n").strip("kB")
 
+# logo
+system("cat ubuntu.txt")
+
+
+# Array for printing table
+info = [
+    "",
+    "[bold red]GNU Linux  :penguin:  " + user + " @ " +computer_name + " [/]",
+    "              --------------",
+    "[bold red]OS[/]:"         +os_name+ " " +os_codename,
+    "[bold red]Host[/]:"       +host,
+    "[bold red]Kernel[/]:"     +kernel,
+    "[bold red]Uptime[/]:"     +uptime,
+    "[bold red]Packages[/]:"+   packages +" dpkg, " +flatpak+ " flatpak, " +snap+ "snap",
+    "[bold red]Shell[/]:"+      shell,
+    "[bold red]Python[/]: "+    py,
+    "[bold red]Resolution[/]:"+ resolution,
+    "[bold red]DE[/]:"+         de,
+    "[bold red]WM[/]:"+         wm,
+    "[bold red]DM[/]:"+         dm,
+    "[bold red]Terminal[/]:"+   teminal_emulator+": " +terminal,
+    "[bold red]CPU[/]:"+        cpu,
+    "[bold red]GPU[/]:"+        gpu,
+    "[bold red]Audio[/]:"+      audio,
+    "[bold red]Memory[/]:"+     usedram+ "GB / " +totalram+ "GB",
+    "",
+]
+
+# print table
+table = Table(show_header=False, show_lines=False, expand=False)     
+table.add_column("  logo  ")
+table.add_column("  Ubuntu Info  ")
+
+i = 0
+for line in open("ubuntu.logo", "r"):
+    line = line.strip("\n")
+    table.add_row(line, info[i])
+    i += 1
+
+console.print(table)
+
 # Print to console
-print(f"\n    [bold red]GNU Linux  :penguin:  {user} @ {computer_name} [/]")
+print(f"    [bold red]GNU Linux  :penguin:  {user} @ {computer_name} [/]")
 print("                  --------------")
 print(f"    [bold red]OS[/]:         {os_name} {os_codename}")
 print(f"    [bold red]Host[/]:       {host}")
