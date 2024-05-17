@@ -101,7 +101,7 @@ info = [
 
 
 def print_table():
-    table = Table(show_header=False, show_lines=False, expand=False, show_edge=False)     
+    table = Table(show_header=False, show_lines=False, expand=False, show_edge=False, box=None)     
 
     for a, line in enumerate(open("ubuntu.logo", "r")):
         line = line.strip("\n")
