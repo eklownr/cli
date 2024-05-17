@@ -4,6 +4,7 @@ from rich.console import Console
 from os import environ
 from os import system
 import subprocess
+from sys import argv
 
 console = Console()
 
@@ -22,6 +23,7 @@ def run_command(command):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     output, error = process.communicate()
     return output.decode('utf-8')
+
 
 ''' Get data from the system '''
 user = environ.get('USER')
@@ -68,8 +70,9 @@ usedram = str(usedram)
 
 #active_ram = run_command("cat /proc/meminfo | grep Active: | awk '{print $2}' ").strip("\n").strip("kB")
 
-# logo
-system("cat ubuntu.txt")
+
+def print_logo():
+    system("cat ubuntu.txt")
 
 
 # Array for printing table
@@ -96,35 +99,62 @@ info = [
     "",
 ]
 
-# print table
-table = Table(show_header=False, show_lines=False, expand=False)     
-table.add_column("  logo  ")
-table.add_column("  Ubuntu Info  ")
 
-i = 0
-for line in open("ubuntu.logo", "r"):
-    line = line.strip("\n")
-    table.add_row(line, info[i])
-    i += 1
+def print_table():
+    table = Table(show_header=False, show_lines=False, expand=False)     
+    table.add_column("  logo  ")
+    table.add_column("  Ubuntu Info  ")
 
-console.print(table)
+    i = 0
+    for line in open("ubuntu.logo", "r"):
+        line = line.strip("\n")
+        table.add_row(line, info[i])
+        i += 1
 
-# Print to console
-print(f"    [bold red]GNU Linux  :penguin:  {user} @ {computer_name} [/]")
-print("                  --------------")
-print(f"    [bold red]OS[/]:         {os_name} {os_codename}")
-print(f"    [bold red]Host[/]:       {host}")
-print(f"    [bold red]Kernel[/]:     {kernel}")
-print(f"    [bold red]Uptime[/]:     {uptime}")
-print(f"    [bold red]Packages[/]:   {packages} dpkg, {flatpak} flatpak, {snap} snap")
-print(f"    [bold red]Shell[/]:      {shell}")
-print(f"    [bold red]Python[/]:     {py}")
-print(f"    [bold red]Resolution[/]: {resolution}")
-print(f"    [bold red]DE[/]:         {de} ")
-print(f"    [bold red]WM[/]:         {wm}")
-print(f"    [bold red]DM[/]:         {dm}")
-print(f"    [bold red]Terminal[/]:   {teminal_emulator}: {terminal}")
-print(f"    [bold red]CPU[/]:        {cpu}")
-print(f"    [bold red]GPU[/]:        {gpu}")
-print(f"    [bold red]Audio[/]:      {audio}")
-print(f"    [bold red]Memory[/]:     {usedram} GB / {totalram} GB")
+    console.print(table)
+
+
+def print_info():
+    # Print to console
+    print(f"    [bold red]GNU Linux  :penguin:  {user} @ {computer_name} [/]")
+    print("                  --------------")
+    print(f"    [bold red]OS[/]:         {os_name} {os_codename}")
+    print(f"    [bold red]Host[/]:       {host}")
+    print(f"    [bold red]Kernel[/]:     {kernel}")
+    print(f"    [bold red]Uptime[/]:     {uptime}")
+    print(f"    [bold red]Packages[/]:   {packages} dpkg, {flatpak} flatpak, {snap} snap")
+    print(f"    [bold red]Shell[/]:      {shell}")
+    print(f"    [bold red]Python[/]:     {py}")
+    print(f"    [bold red]Resolution[/]: {resolution}")
+    print(f"    [bold red]DE[/]:         {de} ")
+    print(f"    [bold red]WM[/]:         {wm}")
+    print(f"    [bold red]DM[/]:         {dm}")
+    print(f"    [bold red]Terminal[/]:   {teminal_emulator}: {terminal}")
+    print(f"    [bold red]CPU[/]:        {cpu}")
+    print(f"    [bold red]GPU[/]:        {gpu}")
+    print(f"    [bold red]Audio[/]:      {audio}")
+    print(f"    [bold red]Memory[/]:     {usedram} GB / {totalram} GB")
+
+
+def print_help():
+    print_logo()
+    print("Usage: python3 infofetch.py")
+    print("python3 infofetch.py table")
+    print("python3 infofetch.py logo")
+    print("python3 infofetch.py info")
+    print("python3 infofetch.py help or --help or -h")
+
+if __name__ == "__main__":
+    args = argv[1:]
+    if args == []:
+        print_info()
+    elif args[0] == "table":
+        print_table()
+    elif args[0] == "logo":
+        print_logo()
+    elif args[0] == "info":
+        print_info()
+    elif  args[0] == "-h" or args[0] == "--help" or args[0] == "help":
+        print_help()
+    else:
+        print("Unknown argument")
