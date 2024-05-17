@@ -43,9 +43,9 @@ teminal_emulator = run_command("pstree -sA $$ | awk -F '---' '{print $3}'").stri
 kernel = run_command("uname -r").strip("\n")
 uptime = run_command("uptime | uptime | awk '{print $3}' ").strip("\n").strip(",")
 host = run_command("cat /sys/devices/virtual/dmi/id/product_name").strip("\n")
-cpu = run_command("cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{print $4, $5, $6, $7, $8, $9}' ").strip("\n")
-#cpu = run_command("lscpu | grep 'Modellnamn' | awk '{print $2, $3, $4, $5, $6, $7, $8}' ").strip("\n")
-gpu = run_command("glxinfo  | grep Device").strip("Device: ").strip("\n")
+cpu = run_command("cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{print $4, $6, $8, $9}' ").strip("\n")
+#cpu = run_command("lscpu | grep 'Modellnamn' | awk '{print $2, $3, $4, $5, $7, $8}' ").strip("\n")
+gpu = run_command("glxinfo  | grep Device | awk {'print $2, $3, $4, $5, $6'}").strip("Device: ").strip("\n")
 audio = run_command("lshw 2> /dev/null -C multimedia  | grep produkt").strip("produkt: ").strip("\n")
 packages = run_command("dpkg --get-selections | grep -v deinstall | wc -l").strip("\n")
 flatpak = run_command("flatpak list | wc -l").strip("\n")
@@ -80,30 +80,30 @@ info = [
     "",
     "[bold red]GNU Linux  :penguin:  " + user + " @ " +computer_name + " [/]",
     "              --------------",
-    "[bold red]OS[/]:"         +os_name+ " " +os_codename,
-    "[bold red]Host[/]:"       +host,
-    "[bold red]Kernel[/]:"     +kernel,
-    "[bold red]Uptime[/]:"     +uptime,
-    "[bold red]Packages[/]:"+   packages +" dpkg, " +flatpak+ " flatpak, " +snap+ "snap",
-    "[bold red]Shell[/]:"+      shell,
-    "[bold red]Python[/]: "+    py,
-    "[bold red]Resolution[/]:"+ resolution,
-    "[bold red]DE[/]:"+         de,
-    "[bold red]WM[/]:"+         wm,
-    "[bold red]DM[/]:"+         dm,
-    "[bold red]Terminal[/]:"+   teminal_emulator+": " +terminal,
-    "[bold red]CPU[/]:"+        cpu,
-    "[bold red]GPU[/]:"+        gpu,
-    "[bold red]Audio[/]:"+      audio,
-    "[bold red]Memory[/]:"+     usedram+ "GB / " +totalram+ "GB",
+    "[bold red]OS[/]: "         +os_name+ " " +os_codename,
+    "[bold red]Host[/]: "       +host,
+    "[bold red]Kernel[/]: "     +kernel,
+    "[bold red]Uptime[/]: "     +uptime,
+    "[bold red]Packages[/]: "+   packages +" dpkg, " +flatpak+ " flatpak, " +snap+ " snap",
+    "[bold red]Shell[/]: "+      shell,
+    "[bold red]Python[/]: "+     py,
+    "[bold red]Resolution[/]: "+ resolution,
+    "[bold red]DE[/]: "+         de,
+    "[bold red]WM[/]: "+         wm,
+    "[bold red]DM[/]: "+         dm,
+    "[bold red]Terminal[/]: "+   teminal_emulator+": " +terminal,
+    "[bold red]CPU[/]: "+        cpu,
+    "[bold red]GPU[/]: "+        gpu,
+    "[bold red]Audio[/]: "+      audio,
+    "[bold red]Memory[/]: "+     usedram+ "GB / " +totalram+ "GB",
     "",
 ]
 
 
 def print_table():
-    table = Table(show_header=False, show_lines=False, expand=False)     
-    table.add_column("  logo  ")
-    table.add_column("  Ubuntu Info  ")
+    table = Table(show_header=False, show_lines=False, expand=False, show_edge=False)     
+    #table.add_column("  logo  ")
+    #table.add_column("  Ubuntu Info  ")
 
     i = 0
     for line in open("ubuntu.logo", "r"):
