@@ -108,6 +108,7 @@ def print_table():
     i = 0
     for line in open("ubuntu.logo", "r"):
         line = line.strip("\n")
+        line = "[red]" + line + " [/]" 
         table.add_row(line, info[i])
         i += 1
 
