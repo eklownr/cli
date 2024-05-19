@@ -1,6 +1,7 @@
 # A simple neofetch clone for my Ubuntu 
 
-## Run: python3 infofetch.py
+### Run: 
+* python3 infofetch.py
 
 ### Or install:
 bash neo_install.sh
