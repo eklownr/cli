@@ -7,11 +7,11 @@
 
 >Then run: 
 
->source ~/.bashrc
->neo
+>* source ~/.bashrc
+>* neo
 
->Install rich for colors:
->pip install rich 
+### Install rich for colors:
+>* pip install rich 
 
->Check out rich:
->python3 -m rich
+>* Check out rich:
+>* python3 -m rich
