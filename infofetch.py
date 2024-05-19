@@ -104,7 +104,7 @@ def print_table():
     table = Table(show_header=False, show_lines=False, expand=False, show_edge=False, box=None)     
     
     ### TODO: alias neo='path_to_infofetch.py table' do not work from other dir!
-    logo_file_path = "~/neo/ubuntu.logo"
+    logo_file_path = "ubuntu.logo" # ~/neo/ubuntu.logo
 
     for a, line in enumerate(open(logo_file_path, "r")):
         line = line.strip("\n")
