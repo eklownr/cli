@@ -3,20 +3,20 @@
 :penguin:
 
 ### Run: 
-* git clone https://github.com/eklownr/cli
-* cd cli
-* python3 infofetch.py
+* `git clone https://github.com/eklownr/cli`
+* `cd cli`
+* `python3 infofetch.py`
 
 ### Or install:
-.... bash neo_install.sh ....
+* `bash neo_install.sh`
 
 Then run: 
-* source ~/.bashrc
-* neo
+* `source ~/.bashrc`
+* `neo`
 
 ### Requirements:
 **Install rich for colors**
-* pip install rich 
+* `pip install rich `
 
-* Check out rich:
-* python3 -m rich
+* `Check out rich:`
+* `python3 -m rich`
