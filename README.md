@@ -1,8 +1,9 @@
-A simple neofetch clone for my Ubuntu 
+# A simple neofetch clone for my Ubuntu 
 
-Run: python3 infofetch.py
+## Run: python3 infofetch.py
 
-Or install:
+### Or install:
+'''
 bash neo_install.sh
 
 Then run: 
@@ -14,3 +15,4 @@ pip install rich
 
 Check out rich:
 python3 -m rich
+'''
