@@ -4,7 +4,7 @@
 * python3 infofetch.py
 
 ### Or install:
-bash neo_install.sh
+* bash neo_install.sh
 
 Then run: 
 * source ~/.bashrc
