@@ -72,7 +72,7 @@ usedram = str(usedram)
 
 
 def print_logo():
-    system("cat ~/programmering/python/cli/ubuntu.txt")
+    system("cat ~/neo/ubuntu.txt")
 
 
 # Array for printing table
