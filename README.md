@@ -1,5 +1,7 @@
 # A simple neofetch clone for my Ubuntu 
 
+:penguin:
+
 ### Run: 
 * python3 infofetch.py
 
