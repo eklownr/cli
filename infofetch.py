@@ -1,8 +1,7 @@
 from rich import print
 from rich.table import Table
 from rich.console import Console
-from os import environ
-from os import system
+from os import system, getcwd, environ
 import subprocess
 from sys import argv
 
@@ -104,9 +103,10 @@ def print_table():
     table = Table(show_header=False, show_lines=False, expand=False, show_edge=False, box=None)     
     
     ### TODO: alias neo='path_to_infofetch.py table' do not work from other dir!
-    logo_file_path = "ubuntu.logo" # ~/neo/ubuntu.logo
+    logo_file = "/neo/ubuntu.logo" # ~/neo/ubuntu.logo
+    file_path = getcwd()+logo_file
 
-    for a, line in enumerate(open(logo_file_path, "r")):
+    for a, line in enumerate(open(file_path, "r")):
         line = line.strip("\n")
         line = "[red]" + line + " [/]" 
         table.add_row(line, info[a])
