@@ -4,7 +4,10 @@ Run: python3 infofetch.py
 
 Or install:
 bash neo_install.sh
-Then run: neo
+
+Then run: 
+source ~/.bashrc
+neo
 
 Install rich for colors:
 pip install rich 
