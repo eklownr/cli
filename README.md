@@ -3,6 +3,8 @@
 :penguin:
 
 ### Run: 
+* git clone https://github.com/eklownr/cli
+* cd cli
 * python3 infofetch.py
 
 ### Or install:
