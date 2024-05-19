@@ -6,6 +6,7 @@
 >bash neo_install.sh
 
 >Then run: 
+
 >source ~/.bashrc
 >neo
 
