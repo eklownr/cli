@@ -11,7 +11,7 @@ Then run:
 * neo
 
 ### Requirements:
-**Install rich for colors
+**Install rich for colors**
 * pip install rich 
 
 * Check out rich:
