@@ -1,4 +1,4 @@
-# A simple neofetch clone for my Ubuntu 
+# A simple neofetch clone for my Ubuntu :penguin:
 
 :penguin:
 
