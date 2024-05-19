@@ -10,7 +10,8 @@ Then run:
 * source ~/.bashrc
 * neo
 
-### Install rich for colors:
+### Requirements:
+**Install rich for colors
 * pip install rich 
 
 * Check out rich:
